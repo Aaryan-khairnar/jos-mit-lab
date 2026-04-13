@@ -1,39 +1,42 @@
-# MIT 6.828: Operating System Engineering lab / JOS
+# jos-mit-lab
 
-This is my implementation of the labs from [MIT's operating system graduate class 6.828](https://pdos.csail.mit.edu/6.828/2014/overview.html). (MIT gracefully offers their course material to the public).
+My implementation of the JOS operating system and kernel, following the MIT 6.828 Operating System Engineering labs.
 
-The following is quoted from the website.
+This repository contains my solutions and modifications across labs, covering booting, memory management, process isolation, system calls, file systems, and networking on x86.
 
-> The lab is split into 6 major parts that build on each other, culminating in a primitive operating system on which you can run simple commands through your own shell. We reserve the last lecture for you to demo your operating system to the rest of the class.
->
-> The operating system you will build, called JOS, will have Unix-like functions (e.g., fork, exec), but is implemented in an exokernel style (i.e., the Unix functions are implemented mostly as user-level library instead of built-in to the kernel). The major parts of the JOS operating system are:
-> * Booting
-> * Memory management
-> * User environments
->  * Preemptive multitasking
->  * File system, spawn, and shell 
->  * Network driver
->  * Open-ended project
->  
->We will provide skeleton code for pieces of JOS, but you will have to do all the hard work. 
+Focused on understanding low-level system design and kernel development from first principles.
 
-# INSTALLATION
 
-See the lab webpage for the full configuration. 
+### To build kernel again
 
-A simple way to try the project is to use a docker image.
+From your project directory:
+```
+docker run -v $(pwd):/to_build -it jos
+```
+Then inside:
+```
+cd /to_build  recreate everything (correct flow)
+make qemu-nox
+```
+You don’t need to rebuild unless you changed code.
+#### Important mental model (this will save you later)
+Every time you run:
+make qemu-nox
+you are:
+> booting a **fresh virtual PC from scratch**
 
-   docker build -t jos .
+Nothing persists inside JOS unless you explicitly modify disk images.
+So:
+- All processes (`envs`) restart
+- Shell resets
+- Filesystem reloads from image
+#### To exit
 
-It can be used with:
+```
+Ctrl + A
+X
 
-    docker run -v $(pwd):/to_build -it jos
+then 
+root@e21f59e2c6bb:/to_build# exit
+```
 
-This open a shell in an environement with the right compiler and qemu.
-
-    make
-    make qemu-nox
-
-TODO: add gdb and qemu with X
-
-  
