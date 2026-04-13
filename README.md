@@ -11,11 +11,12 @@ Focused on understanding low-level system design and kernel development from fir
 
 From your project directory:
 ```
-docker run -v $(pwd):/to_build -it jos
+docker run -it --rm -u $(id -u):$(id -g) -v $(pwd):/jos jos-env
 ```
 Then inside:
 ```
-cd /to_build  recreate everything (correct flow)
+cd /jos
+make
 make qemu-nox
 ```
 You don’t need to rebuild unless you changed code.
@@ -37,6 +38,6 @@ Ctrl + A
 X
 
 then 
-root@e21f59e2c6bb:/to_build# exit
+I have no name!@542d992da23e:/jos$ exit
 ```
 
