@@ -20,8 +20,9 @@ make
 make qemu-nox
 ```
 You don’t need to rebuild unless you changed code.
-#### Important mental model (this will save you later)
-Every time you run:
+
+#### Important mental model
+Every time the following command is run:
 make qemu-nox
 you are:
 > booting a **fresh virtual PC from scratch**
@@ -31,7 +32,8 @@ So:
 - All processes (`envs`) restart
 - Shell resets
 - Filesystem reloads from image
-#### To exit
+
+### To exit
 
 ```
 Ctrl + A
